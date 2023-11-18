@@ -72,7 +72,7 @@ import importlib
 import signal
 
 # we must have Python version between 3.7.3 and 3.10.x
-assert (3, 10, 99) >= sys.version_info >= (3, 7, 3), f"Python version needs to be >= 3.7.3 and <= 3.10.x, you have {sys.version}"
+assert (3, 11, 99) >= sys.version_info >= (3, 7, 3), f"Python version needs to be >= 3.7.3 and <= 3.10.x, you have {sys.version}"
 
 kivy.require('2.1.0')
 
@@ -481,8 +481,8 @@ class MainWindow(BoxLayout):
         Logger.debug("MainWindow: Connected...")
         self.add_line_to_log("...Connected")
         self.app.is_connected = True
-        self.ids.connect_button.state = 'down'
-        self.ids.connect_button.text = "Disconnect"
+        self.ids.disconnect_button.state = 'down'
+        #self.ids.connect_button.text = "Disconnect"
         self.ids.print_but.text = 'Run'
         self.paused = False
         self.is_printing = False

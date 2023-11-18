@@ -39,12 +39,18 @@
                 with_previous: False
             ActionOverflow:
 
-            ActionToggleButton:
+            ActionButton:
                 id: connect_button
                 text: 'Connect'
-                important: True
                 disabled: root.is_printing
+                #important: True
                 on_press: root.connect()
+            ActionButton:
+                id: disconnect_button
+                text: 'Disconnect'
+                disabled: root.is_printing
+                #important: True
+                on_press: root.disconnect()
             ActionButton:
                 id: print_but
                 disabled: not app.is_connected or app.status == 'Alarm'
