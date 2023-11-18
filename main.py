@@ -444,7 +444,8 @@ class MainWindow(BoxLayout):
                 mb = MessageBox(text='Cannot Disconnect while printing - Abort first, then wait', cancel_text='OK')
                 mb.open()
             else:
-                self._disconnect()
+                self.add_line_to_log("Already connected...")
+                #self._disconnect()
 
         else:
             port = self.config.get('General', 'serial_port')

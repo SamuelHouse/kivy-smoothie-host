@@ -16,13 +16,13 @@
             ActionButton:
                 id: connect_button
                 text: 'Connect'
-                disabled: root.is_printing
+                disabled: app.is_connected or root.is_printing
                 #important: True
                 on_press: root.connect()
             ActionButton:
                 id: disconnect_button
+                disabled: not app.is_connected
                 text: 'Disconnect'
-                disabled: root.is_printing
                 #important: True
                 on_press: root._disconnect()
             ActionButton:
