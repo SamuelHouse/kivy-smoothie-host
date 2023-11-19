@@ -290,10 +290,10 @@ class ArrowButton(ButtonBehavior, Widget):
 class JogRoseWidget(BoxLayout):
     abc_sel = StringProperty('Z')
 
-    ButtonScaleWidthV= 0.12
-    ButtonScaleHeightV= 0.12
-    ButtonScaleWidthH= 0.12
-    ButtonScaleHeightH= 0.12
+    ButtonScaleWidthV= 0.135
+    ButtonScaleHeightV= 0.135
+    ButtonScaleWidthH= 0.135
+    ButtonScaleHeightH= 0.135
     RoundButtonScale= 0.12
 
     def __init__(self, **kwargs):
