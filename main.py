@@ -4,6 +4,8 @@ from kivy.config import Config
 from kivy.app import App
 from kivy.lang import Builder
 
+from kivy.input.providers.mouse import MouseMotionEvent
+
 from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.label import Label
@@ -103,6 +105,7 @@ class LogLabel(RecycleDataViewBehavior, Label):
         if super(LogLabel, self).on_touch_down(touch):
             return True
         if touch.is_double_tap and self.collide_point(*touch.pos) and self.selectable:
+            Logger.info('Double tap!')
             return self.parent.select_with_touch(self.index, touch)
 
     def apply_selection(self, rv, index, is_selected):
@@ -205,6 +208,7 @@ class MPGWidget(RelativeLayout):
 
     def handle_action(self):
         # Run button pressed
+        
         if self.selected_index == -1:
             # change feed override
             self.app.comms.write(f'M220 S{round(self.last_pos, 1)}\n')
@@ -1133,7 +1137,7 @@ class SmoothieHost(App):
         self.is_v2 = True
         self.wait_on_m0 = False
         self.fast_stream_cmd = ""
-        self.is_cnc = False
+        self.is_cnc = True
         self.is_desktop = 0
         self.webserver = False
         self._blanked = False
