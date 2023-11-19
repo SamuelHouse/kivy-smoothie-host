@@ -1,3 +1,5 @@
+
+
 <CircularButton>:
     canvas:
         Color:
@@ -37,10 +39,10 @@
             y: self.pos[1]
         Rotate:
             angle: root.angle
-            origin: 25,25
+            origin:root.width/2,root.height/2
         Mesh:
             mode: 'triangle_fan'
-            vertices: 0,0,0,0, 0,25,0,0, 25,50,0,0, 50,25,0,0, 50,0,0,0
+            vertices: 0,0,0,0, 0,root.height/3,0,0, root.width/2,root.height,0,0, root.width,root.height/3,0,0, root.width,0,0,0
             indices: 0,1,2,3,4
         PopMatrix
 
@@ -53,27 +55,30 @@
 
 <MyGridV@GridLayout>:
     size_hint: None, None
-    size: 50, 150
+    size: 0, 0
     #spacing: 4
     rows: 3
-    col_force_default: True
-    col_default_width: 50
-    row_force_default: True
-    row_default_height: 50
+    adaptive_size: True
+    col_force_default: False
+    col_default_width: 0
+    row_force_default: False
+    row_default_height: 0
 
 <MyGridH@GridLayout>:
     size_hint: None, None
-    size: 150, 50
+    size: 0, 0
     #spacing: 4
     cols: 3
-    col_force_default: True
-    col_default_width: 50
-    row_force_default: True
-    row_default_height: 50
+    adaptive_size: True
+    col_force_default: False
+    col_default_width: 0
+    row_force_default: False
+    row_default_height: 0
 
 <JogRoseWidget>:
     id: jogrose
     jogrosemain: jogrosemain
+
     abc_panel: abc_panel
     hat: hat
     padding: 5, 5
@@ -87,120 +92,125 @@
     RelativeLayout:
         id: jogrosemain
         MyGridV:
-            pos_hint: {'right': 1.0, 'top': 1.0}
+            pos_hint: {'center_x': 0.9-.5*root.ButtonScaleWidthV, 'center_y': (0.5+3.75*root.ButtonScaleHeightV)}
             ArrowButton:
                 size_hint: None, None
-                size: 50, 50
+                width: jogrosemain.width*root.ButtonScaleWidthV
+                height: jogrosemain.height*root.ButtonScaleHeightV
                 text: '{}+1'.format(root.abc_sel)
                 angle: 0
                 on_press: root.handle_action(root.abc_sel, 1)
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthV, jogrosemain.height*root.ButtonScaleHeightV
                 text: '{}+0.1'.format(root.abc_sel)
                 on_press: root.handle_action(root.abc_sel, 0.1)
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthV, jogrosemain.height*root.ButtonScaleHeightV
                 text: '{}+0.01'.format(root.abc_sel)
                 on_press: root.handle_action(root.abc_sel, 0.01)
 
         MyGridV:
-            pos_hint: {'right': 1.0, 'center_y': 0.27}
-            size: 50, 100
+            pos_hint: {'center_x': 0.9-.5*root.ButtonScaleWidthV, 'center_y': (0.5-.75*root.ButtonScaleHeightV)}
 
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthV, jogrosemain.height*root.ButtonScaleHeightV
                 text: '{}-0.01'.format(root.abc_sel)
                 on_press: root.handle_action(root.abc_sel, -0.01)
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthV, jogrosemain.height*root.ButtonScaleHeightV
                 text: '{}-0.1'.format(root.abc_sel)
                 on_press: root.handle_action(root.abc_sel, -0.1)
             ArrowButton:
                 size_hint: None, None
-                size: 50, 50
+                width: jogrosemain.width*root.ButtonScaleWidthV
+                height: jogrosemain.height*root.ButtonScaleHeightV
                 text: '{}-1'.format(root.abc_sel)
                 angle: 180
                 on_press: root.handle_action(root.abc_sel, -1)
 
         MyGridV:
-            pos_hint: {'center_x': 0.5, 'top': 1.0}
+            pos_hint: {'center_x': 0.5-.5*root.ButtonScaleWidthV, 'center_y': (0.5+3.5*root.ButtonScaleHeightV)}
             ArrowButton:
                 size_hint: None, None
-                size: 50, 50
-                text: 'Y+10'
+                width: jogrosemain.width*root.ButtonScaleWidthV
+                height: jogrosemain.height*root.ButtonScaleHeightV
                 angle: 0
+                text: 'Y+10'
                 on_press: root.handle_action('Y', 10)
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthV, jogrosemain.height*root.ButtonScaleHeightV
                 text: 'Y+1'
                 on_press: root.handle_action('Y', 1)
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthV, jogrosemain.height*root.ButtonScaleHeightV
                 text: 'Y+0.1'
                 on_press: root.handle_action('Y', 0.1)
 
         MyGridV:
-            pos_hint: {'center_x': 0.5, 'y': 0.0}
+            pos_hint: {'center_x': 0.5-.5*root.ButtonScaleWidthV, 'center_y': (0.5-.5*root.ButtonScaleHeightV)}
 
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthV, jogrosemain.height*root.ButtonScaleHeightV
                 text: 'Y-0.1'
                 on_press: root.handle_action('Y', -0.1)
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthV, jogrosemain.height*root.ButtonScaleHeightV
                 text: 'Y-1'
                 on_press: root.handle_action('Y', -1)
             ArrowButton:
                 size_hint: None, None
-                size: 50, 50
+                width: jogrosemain.width*root.ButtonScaleWidthV
+                height: jogrosemain.height*root.ButtonScaleHeightV
                 text: 'Y-10'
                 angle: 180
                 on_press: root.handle_action('Y', -10)
 
         MyGridH:
-            pos_hint: {'x': 0.0, 'center_y': 0.5}
+            pos_hint: {'center_x': (0.5-3.5*root.ButtonScaleWidthH), 'center_y': (0.5+root.ButtonScaleHeightH/2)}
 
             ArrowButton:
                 size_hint: None, None
-                size: 50, 50
+                width: jogrosemain.height*root.ButtonScaleHeightV
+                height: jogrosemain.width*root.ButtonScaleWidthV
                 text: 'X-10'
                 angle: 90
                 on_press: root.handle_action('X', -10)
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthH, jogrosemain.height*root.ButtonScaleHeightH
                 text: 'X-1'
                 on_press: root.handle_action('X', -1)
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthH, jogrosemain.height*root.ButtonScaleHeightH
                 text: 'X-0.1'
                 on_press: root.handle_action('X', -0.1)
 
         MyGridH:
-            pos_hint: {'right': 1, 'center_y': 0.5}
+            pos_hint: {'center_x': (0.5+root.ButtonScaleWidthH/2), 'center_y': (0.5+root.ButtonScaleHeightH/2)}
 
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthH, jogrosemain.height*root.ButtonScaleHeightH
                 text: 'X+0.1'
                 on_press: root.handle_action('X', 0.1)
             Button:
                 size_hint: None, None
-                size: 50, 50
+                size: jogrosemain.width*root.ButtonScaleWidthH, jogrosemain.height*root.ButtonScaleHeightH
                 text: 'X+1'
                 on_press: root.handle_action('X', 1)
             ArrowButton:
                 size_hint: None, None
-                size: 50, 50
+                width: jogrosemain.height*root.ButtonScaleHeightV
+                height: jogrosemain.width*root.ButtonScaleWidthV
                 text: 'X+10'
                 angle: -90
                 on_press: root.handle_action('X', 10)
@@ -209,20 +219,20 @@
             id: hat
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             size_hint: None, None
-            size: 64, 64
+            size: jogrosemain.width*root.ButtonScaleWidthH, jogrosemain.height*root.ButtonScaleHeightH
             on_release: root.hat_released()
 
         CircularButton:
             pos_hint: {'center_x': 0.1, 'center_y': 0.28}
             size_hint: None, None
-            size: dp(50), dp(50)
+            size: jogrosemain.width*root.RoundButtonScale, jogrosemain.height*root.RoundButtonScale
             text: 'Origin'
             on_press: root.handle_action('O', 0)
 
         CircularButton:
             pos_hint: {'center_x': 0.1, 'center_y': 0.1}
             size_hint: None, None
-            size: dp(50), dp(50)
+            size: jogrosemain.width*root.RoundButtonScale, jogrosemain.height*root.RoundButtonScale
             text: 'Home'
             on_press: root.handle_action('H', 0)
 
@@ -231,14 +241,14 @@
             text: 'Motors\nOff'
             font_size: '14sp'
             size_hint: None, None
-            size: dp(55), dp(55)
+            size: jogrosemain.width*root.RoundButtonScale, jogrosemain.height*root.RoundButtonScale
             on_press: root.motors_off()
 
         CircularButton:
             pos_hint: {'center_x': 0.72, 'center_y': 0.28}
             text: 'Safe Z'
             size_hint: None, None
-            size: dp(55), dp(55)
+            size: jogrosemain.width*root.RoundButtonScale, jogrosemain.height*root.RoundButtonScale
             on_press: root.safe_z()
 
         BoxLayout:
@@ -275,24 +285,24 @@
                     id: js100
                     text: '100%'
                     size_hint: None, None
-                    size: dp(50), dp(50)
+                    size: jogrosemain.width*root.RoundButtonScale, jogrosemain.height*root.RoundButtonScale
                     group: 'speed_group'
                 CircularToggleButton:
                     id: js50
                     text: '50%'
                     size_hint: None, None
-                    size: dp(50), dp(50)
+                    size: jogrosemain.width*root.RoundButtonScale, jogrosemain.height*root.RoundButtonScale
                     group: 'speed_group'
                     state: 'down'
                 CircularToggleButton:
                     id: js25
                     text: '25%'
                     size_hint: None, None
-                    size: dp(50), dp(50)
+                    size: jogrosemain.width*root.RoundButtonScale, jogrosemain.height*root.RoundButtonScale
                     group: 'speed_group'
                 CircularToggleButton:
                     id: js10
                     text: '10%'
                     size_hint: None, None
-                    size: dp(50), dp(50)
+                    size: jogrosemain.width*root.RoundButtonScale, jogrosemain.height*root.RoundButtonScale
                     group: 'speed_group'

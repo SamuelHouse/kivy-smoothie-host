@@ -279,6 +279,8 @@ class CircularToggleButton(ToggleButtonBehavior, Widget):
 class ArrowButton(ButtonBehavior, Widget):
     text = StringProperty()
     angle = NumericProperty()
+    width = NumericProperty()
+    height = NumericProperty()
     # def collide_point(self, x, y):
     #     bmin = Vector(self.center) - Vector(25, 25)
     #     bmax = Vector(self.center) + Vector(25, 25)
@@ -287,6 +289,12 @@ class ArrowButton(ButtonBehavior, Widget):
 
 class JogRoseWidget(BoxLayout):
     abc_sel = StringProperty('Z')
+
+    ButtonScaleWidthV= 0.12
+    ButtonScaleHeightV= 0.12
+    ButtonScaleWidthH= 0.12
+    ButtonScaleHeightH= 0.12
+    RoundButtonScale= 0.12
 
     def __init__(self, **kwargs):
         super(JogRoseWidget, self).__init__(**kwargs)
@@ -1114,6 +1122,9 @@ class SmoothieHost(App):
     is_show_camera = BooleanProperty(False)
     is_spindle_camera = BooleanProperty(False)
 
+
+
+
     # Factory.register('Comms', cls=Comms)
     def __init__(self, **kwargs):
         super(SmoothieHost, self).__init__(**kwargs)
@@ -1145,6 +1156,8 @@ class SmoothieHost(App):
         self.cont_jog = False
         self.use_keypad = False
 
+
+
     def build_config(self, config):
         config.setdefaults('General', {
             'last_gcode_path': os.path.expanduser("~"),
@@ -1165,13 +1178,13 @@ class SmoothieHost(App):
         })
         config.setdefaults('UI', {
             'display_type': "RPI Touch",
-            'cnc': 'false',
+            'cnc': 'true',
             'tab_top': 'false',
             'screen_size': 'auto',
             'screen_pos': 'auto',
             'screen_offset': '0,0',
             'filechooser': 'default',
-            'touch_screen': 'false',
+            'touch_screen': 'true',
             'use_keypad': 'default'
         })
         config.setdefaults('Viewer', {
